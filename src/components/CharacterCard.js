@@ -29,9 +29,9 @@ export default function CharacterCard(props) {
       <CardContainer>
         <CharactersCard>
           <CharacterName>{props.char.name}</CharacterName>
-        <p>{props.char.origin.name}</p>
-        <p>{props.char.species}</p>
-        <p>{props.char.status}</p>
+            <p>{props.char.origin.name}</p>
+            <p>{props.char.species}</p>
+            <p>{props.char.status}</p>
         <CharacterImg src={`https://rickandmortyapi.com/api/character/avatar/${props.char.id}.jpeg`}></CharacterImg>
         </CharactersCard>
       </CardContainer>
