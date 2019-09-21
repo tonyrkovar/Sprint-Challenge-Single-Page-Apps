@@ -25,33 +25,43 @@ import CharacterCard from './CharacterCard';
 export default function SearchForm(props) {
   const [searchValue, setSearchValue] =useState('')
   const [characters, setCharacters] = useState([])
+  const [apiValue, setApiValue] = useState('');
+
 
   useEffect(() => {
     axios 
-      .get(`https://rickandmortyapi.com/api/character/`)
+      .get(`https://rickandmortyapi.com/api/character/${apiValue}`)
       .then(res => {
         console.log(res.data.results);
-        setCharacters('this is search data',res.data.results)
+        setCharacters(res.data.results)
       })
-  }, [characters]);
+      .catch((err) => {
+        console.log('Something went wrong:', err)
+      })
+  }, [apiValue]);
 // useEffect(() => {
 //   setCharacters(props.name);
 // }, [characters])
   
 
-console.log(characters)
+console.log('searchformcons',characters)
 
 
 
   const handleSearchInputChangers = e => {
-    setSearchValue(e.props);
-    console.log('1111',e.props)
+    // Use Target to pull your data
+    setSearchValue(e.target.value);
+    console.log('1111',e.target.value)
   }
 
   const callSearch = (e) => {
     e.preventDefault();
-    e.name.search(searchValue);
-    console.log('2222',searchValue)
+    const updatedCharacters = characters.filter((character) => 
+      character.name.includes(searchValue)
+    );
+    setCharacters(updatedCharacters)
+    setApiValue(updatedCharacters.id)
+    console.log('2222',characters)
   }
   return (
     <div>
@@ -66,10 +76,6 @@ console.log(characters)
        />
        <input onClick={callSearch} type='submit' value='Search' />
      </form>
-    {/* <Search 
-      items={characters}
-      placeholder='Search Characters'
-    /> */}
     </div>
   );
 }
