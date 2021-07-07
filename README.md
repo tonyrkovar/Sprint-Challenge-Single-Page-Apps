@@ -29,6 +29,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 > Answer:
 
+    Using client side routing allows you create a single page application that lets you save on browser usage by making everything load initially and then rerouting the user to display only the data you want through pathing. 
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
